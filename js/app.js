@@ -41,8 +41,14 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
-     var feedUrl = allFeeds[id].url,
-         feedName = allFeeds[id].name;
+
+     try {
+         var feedUrl = allFeeds[id].url,
+             feedName = allFeeds[id].name;
+     } catch (err) {
+         throw new TypeError('Sorry! Website under maintenance. Come back ' +
+                'later.');
+     };
 
      $.ajax({
        type: "POST",
