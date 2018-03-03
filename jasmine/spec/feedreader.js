@@ -104,8 +104,9 @@ $(function() {
         });
 
         it('feed has at least one entry', function(done) {
-            var children = $('.feed').children(['entry.class']);
+            var children = $('.feed .entry');
             expect(children).toBeDefined();
+            expect(children.length).toBeGreaterThan(0);
             done();
         });
 
@@ -126,34 +127,20 @@ $(function() {
         });
 
         it('feed has changed after it loaded', function(done) {
-            var title = $('.header-title').text();
-            var newTitle;
-
-            var firstH2 = $('.entry h2').text();
-            var newH2;
+            var feed = $('.feed').text();
+            var newFeed;
 
             loadFeed(1, function() {
-                newTitle = $('.header-title').text();
-                expect(title).toBeDefined();
-                expect(title).not.toBe(null);
-                expect(title).not.toEqual('');
+                newFeed = $('.feed').text();
+                expect(feed).toBeDefined();
+                expect(feed).not.toBe(null);
+                expect(feed).not.toEqual('');
 
-                expect(newTitle).toBeDefined();
-                expect(newTitle).not.toBe(null);
-                expect(newTitle).not.toEqual('');
+                expect(newFeed).toBeDefined();
+                expect(newFeed).not.toBe(null);
+                expect(newFeed).not.toEqual('');
 
-                expect(title).not.toEqual(newTitle);
-
-                newH2 = $('.entry h2').text();
-                expect(firstH2).toBeDefined();
-                expect(firstH2).not.toBe(null);
-                expect(firstH2).not.toEqual('');
-
-                expect(newH2).toBeDefined();
-                expect(newH2).not.toBe(null);
-                expect(newH2).not.toEqual('');
-
-                expect(firstH2).not.toEqual(newH2);
+                expect(feed).not.toEqual(newFeed);
 
                 done();
             });
