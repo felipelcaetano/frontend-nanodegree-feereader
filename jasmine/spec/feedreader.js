@@ -71,11 +71,11 @@ $(function() {
           */
           it('menu is shown and is hidden when clicked', function() {
             var hasClass = true;
-            $('.menu-icon-link').trigger('click');
+            $('.menu-icon-link').click();
             hasClass = $('body').hasClass('menu-hidden');
             expect(hasClass).toBe(false);
 
-            $('.menu-icon-link').trigger('click');
+            $('.menu-icon-link').click();
             hasClass = $('body').hasClass('menu-hidden');
             expect(hasClass).toBe(true);
           });
@@ -86,6 +86,7 @@ $(function() {
     describe('Initial Entries', function() {
 
         beforeEach(function(done) {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             loadFeed(0, function() {
                 done();
             });
@@ -94,11 +95,11 @@ $(function() {
         /*
          * Verifica seo feeed tem pelo menos uma materia
         */
-        it('feed has at least one entry', function(done) {
+        it('feed has at least one entry', function() {
             var children = $('.feed .entry');
             expect(children).toBeDefined();
             expect(children.length).toBeGreaterThan(0);
-            done();
+            //done();
         });
 
     });
@@ -107,6 +108,7 @@ $(function() {
     describe('New Feed Selection', function() {
 
         beforeEach(function(done) {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
             loadFeed(0, function() {
                 done();
             });
